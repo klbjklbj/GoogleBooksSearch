@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import SearchForm from "../components/SearchForm";
 import BookInfo from "../components/BookInfo";
 import Card from "../components/Card";
@@ -17,8 +12,8 @@ class Books extends Component {
   };
 
   // searches the GoogleBooks API storing the data in books array
-  searchBooks = query => {
-    API.searchBooks(query)
+  searchBooks = searchTerm => {
+    API.searchBooks(searchTerm)
       .then(res =>
         this.setState(
           {
@@ -27,7 +22,6 @@ class Books extends Component {
           },
           console.log(res.data.items[3].volumeInfo.imageLinks.thumbnail),
           console.log(res.data.items[3].selfLink)
-
         )
       )
       .catch(err => console.log(err));
@@ -58,33 +52,20 @@ class Books extends Component {
     this.searchBooks(this.state.search);
   };
 
-  //############BELOW FROM STU BOOKS EXAMPLE
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.title && this.state.author) {
-  //     API.saveBook({
-  //       title: this.state.title,
-  //       author: this.state.author,
-  //       description: this.state.description
-  //     })
-  //       .then(res => this.loadBooks())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
   render() {
     return (
       <Container fluid>
         <Row>
           <Col size="md-12">
             <Card>
-              <h1>Search for a Book</h1>
-            </Card>
-            <SearchForm
+              <h1>Welcome To React Google Book Search</h1>
+              <SearchForm
               value={this.state.search}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
             />
+            </Card>
+
           </Col>
         </Row>
 
@@ -111,7 +92,6 @@ class Books extends Component {
                       title: book.volumeInfo.title,
                       src: book.volumeInfo.imageLinks.thumbnail,
                       authors: book.volumeInfo.authors,
-                      date: book.volumeInfo.publishedDate,
                       description: book.volumeInfo.description,
                       link: book.volumeInfo.infoLink
                     })}

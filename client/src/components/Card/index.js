@@ -6,7 +6,7 @@ const Card = props => {
       <div className="card-header">
         <h3>{props.heading}</h3>
       </div>
-      <div className="card-body text-left">{props.children}</div>
+      <div className="card-body center">{props.children}</div>
     </div>
   );
 }

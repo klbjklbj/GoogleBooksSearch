@@ -4,7 +4,7 @@ const SearchForm = props => {
   return (
     <form>
       <div className="form-group" style={{ textAlign: "center" }}>
-        <input style={{ textAlign: "left" }}
+        <input className="form-control form-control-lg" style={{ textAlign: "center", marginTop: "60px" }}
           onChange={props.handleInputChange}
           value={props.value}
           name="search"

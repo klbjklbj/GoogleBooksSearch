@@ -1,12 +1,13 @@
 // front end api calls to database and google books API
 
 import axios from "axios";
+const queryURL = "https://www.googleapis.com/books/v1/volumes?q=";
 
 export default {
 
   // call to google books API
-  searchBooks: function() {
-    return axios.get("https://www.googleapis.com/books/v1/volumes?q=Harry+Potter");
+  searchBooks: function(searchTerm) {
+    return axios.get(queryURL+searchTerm);
   },
   // Gets all books
   getBooks: function() {
