@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import SearchForm from "../components/SearchForm";
-import BookDetail from "../components/BookDetail";
+import BookInfo from "../components/BookInfo";
 import Card from "../components/Card";
 
 class Books extends Component {
@@ -27,7 +27,7 @@ class Books extends Component {
           },
           console.log(res.data.items[3].volumeInfo.imageLinks.thumbnail),
           console.log(res.data.items[3].selfLink)
-          
+
         )
       )
       .catch(err => console.log(err));
@@ -77,9 +77,9 @@ class Books extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-            <Jumbotron>
+            <Card>
               <h1>Search for a Book</h1>
-            </Jumbotron>
+            </Card>
             <SearchForm
               value={this.state.search}
               handleInputChange={this.handleInputChange}
@@ -91,20 +91,30 @@ class Books extends Component {
         {/* SEARCH RESULTS */}
         <Row>
           <Col size="md-12">
-            <Jumbotron>
-              <h1>Book Results</h1>
-            </Jumbotron>
+            <Card>
+              <h1>Search Results</h1>
+            </Card>
             {this.state.books.length ? (
               <Card>
                 {this.state.books.map(book => (
-                  <BookDetail
+                  <BookInfo
                     key={book.id}
                     title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors}
+                    authors={book.volumeInfo.authors
+                      ? book.volumeInfo.authors.join(", ")
+                      : "N/A"}
                     src={book.volumeInfo.imageLinks.thumbnail}
                     link={book.volumeInfo.infoLink}
                     description={book.volumeInfo.description}
 
+                    handleSaveBook={() => this.handleSaveBook({
+                      title: book.volumeInfo.title,
+                      src: book.volumeInfo.imageLinks.thumbnail,
+                      authors: book.volumeInfo.authors,
+                      date: book.volumeInfo.publishedDate,
+                      description: book.volumeInfo.description,
+                      link: book.volumeInfo.infoLink
+                    })}
                   />
                 ))}
               </Card>
@@ -112,7 +122,7 @@ class Books extends Component {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-          
+
         </Row>
       </Container>
     );
