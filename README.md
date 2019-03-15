@@ -2,12 +2,12 @@
 This is a React-based book search using the Google Books API.
 
 ## Technologies Used
-Google Books API
-React JS
-MongoDB
-Mongoose
-Node
-Express
+* Google Books API
+* React JS
+* MongoDB
+* Mongoose
+* Node
+* Express
 
 ## How it Works
 There are two pages in this app.
