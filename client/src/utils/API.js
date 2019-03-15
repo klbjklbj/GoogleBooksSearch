@@ -5,9 +5,9 @@ import axios from "axios";
 export default {
 
   // call to google books API
-  // searchBooks: function(searchedTitle) {
-  //   return axios.get("https://www.googleapis.com/books/v1/volumes?q=" + searchTitle);
-  // },
+  searchBooks: function() {
+    return axios.get("https://www.googleapis.com/books/v1/volumes?q=Harry+Potter");
+  },
   // Gets all books
   getBooks: function() {
     return axios.get("/api/books");
