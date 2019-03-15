@@ -25,23 +25,13 @@ class Books extends Component {
             books: res.data.items,
             search: ""
           },
-          console.log(res.data.items)
+          console.log(res.data.items[3].volumeInfo.imageLinks.thumbnail),
+          console.log(res.data.items[3].selfLink)
+          
         )
       )
       .catch(err => console.log(err));
   };
-
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  // loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", description: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -95,13 +85,6 @@ class Books extends Component {
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
             />
-            {/* ORIGINAL BUTTON BELOW */}
-            {/* <FormBtn
-                disabled={!(this.state.author && this.state.title)}
-                onClick={this.handleFormSubmit}
-              >
-                Search for the Book!
-              </FormBtn>             */}
           </Col>
         </Row>
 
@@ -118,8 +101,8 @@ class Books extends Component {
                     key={book.id}
                     title={book.volumeInfo.title}
                     authors={book.volumeInfo.authors}
-                    image={book.volumeInfo.imageLinks.thumbnail}
-                    link={book.volumeInfo.link}
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    link={book.volumeInfo.infoLink}
                     description={book.volumeInfo.description}
 
                   />
@@ -129,29 +112,7 @@ class Books extends Component {
                 <h3>No Results to Display</h3>
               )}
           </Col>
-          {/* 
-          //ORIGINAL AJAX BOOKS EXAMPLE BELOW */}
-          {/* <Col size="md-12"> */}
-          {/* <Jumbotron>
-              <h1>Book Results</h1>
-            </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-                <h3>No Results to Display</h3>
-              )}
-          </Col> */}
+          
         </Row>
       </Container>
     );
