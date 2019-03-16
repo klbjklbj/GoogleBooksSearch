@@ -1,6 +1,9 @@
 # GoogleBooksSearch
 This is a React-based book search using the Google Books API.
 
+## Deployed Version
+https://sheltered-headland-17086.herokuapp.com/
+
 ## Technologies Used
 * Google Books API
 * React JS
